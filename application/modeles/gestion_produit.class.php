@@ -10,7 +10,11 @@ class GestionProduit extends GestionBDD{
         return self::getLesTuples('produit');
     } 
     
-    public static function getLesProduitsByCategorie(){
-        return self::getLesTuplesSimpleJointure('produit','categorie');
+    public static function getLesProduitsByCategorie($idCategorie){
+        return self::getLesTuplesByChamp('produit', 'idCategorie',$idCategorie);
+    }
+    
+    public static function getLeProduit($idProduit) {
+        return self::getLesTuplesByChamp('produit', 'idProduit', $idProduit);
     }
 }

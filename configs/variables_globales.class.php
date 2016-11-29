@@ -14,6 +14,7 @@
 class VariablesGlobales {
     public static $lesNews;
     public static $lesCategories;
+    public static $lesProduits;
     
     //put your code here
 }

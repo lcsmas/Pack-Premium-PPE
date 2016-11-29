@@ -1,8 +1,16 @@
+<script>
+    $(function(){ 
+        $(".viderPanier").click(function(){
+             $("article").html("");
+        });
+    });
+</script>
+
 <section class="panier">
+    
     <img src="<?php echo Chemins::IMAGES . 'mon_panier.png' ?>"	alt="Panier" title="panier"/>
-    <a class="viderPanier" href="index.php?cas=viderPanier">Vider le panier</a>
+    <button class="viderPanier" onclick="<?php Panier::vider();?>">Vider le panier</button> <!--href="index.php?controleur=panier&action=vider!--> 
     <?php
-    var_dump(VariablesGlobales::$lesProduits);
     foreach (VariablesGlobales::$lesProduits as $unProduit) {
         $id = $unProduit->idProduit;
         $nom = $unProduit->LibelleProduit;
@@ -11,7 +19,7 @@
         $cheminImage = Chemins::IMAGES_PRODUITS . $unProduit->ImageProduit;
         ?>
         <article>
-            <img src="<?php echo $cheminImage ?>" alt=image />
+            <img src="<?php echo $cheminImage ?>" alt=image height="200" width="200" />
             <p>
                 <?php
                 echo $nom . " ($prix Euros)";

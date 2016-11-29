@@ -16,12 +16,24 @@ class ControleurPanier {
         require_once chemins::LIBS . 'Panier.class.php';
         require_once chemins::MODELES . 'gestion_produit.class.php';
         
-        $idProduit = $_REQUEST['idProduit'];
+        $idProduit = filter_input(INPUT_GET, 'idProduit');
         $leProduit = GestionProduit::getLeProduit($idProduit);
         Panier::initialiser();
         Panier::ajouterProduit($leProduit);
         
         VariablesGlobales::$lesProduits = Panier::getProduits();
         require_once chemins::VUES . 'v_panier.inc.php';
+    }
+    
+    public function afficher()
+    {
+        require_once chemins::LIBS . 'Panier.class.php';       
+        VariablesGlobales::$lesProduits = Panier::getProduits();
+        require_once chemins::VUES . 'v_panier.inc.php';
+    }
+    
+    public function vider()
+    {
+        
     }
 }

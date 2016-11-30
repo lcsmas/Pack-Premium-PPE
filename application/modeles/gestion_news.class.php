@@ -3,101 +3,18 @@
 /**
  * Contient tous les services de gestion de la boutique
  */
-class GestionNews {
-    // <editor-fold defaultstate="collapsed" desc="Champs statiques">
-
-    /**
-     * Objet de la classe PDO
-     * @var PDo
-     */
-    private static $pdoCnxBase = null;
-
-    /**
-     * Objet de la classe PDOStatement
-     * @var PDOStatement
-     */
-    private static $pdoStResults = null;
-    private static $request = ""; //texte de la requête
-    private static $result = null; //resultat de la requête
-
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="Méthodes statiques">
-    /**
-     * Se connecte à la base précisé dans la classe mysql_config
-     */
-    public static function seConnecter() {
-        if (!isset(self::$pdoCnxBase)) {
-            try {               
-                self::$pdoCnxBase = new PDO('mysql:host=' . MySqlConfig::NOM_SERVEUR . ';dbname=' . MySqlConfig::NOM_BASE, MySqlConfig::NOM_UTILISATEUR, MySqlConfig::MOT_DE_PASEE);
-                self::$pdoCnxBase->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                self::$pdoCnxBase->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-                self::$pdoCnxBase->query("SET CHARACTER SET utf8");
-            } catch (Exception $e) {
-                // l'objet pdoCnxBase a généré automatiquement un objet de type Exception
-                echo 'Erreur : ' . $e->getMessage() . '<br />'; // Méthode de la classe Exception
-                echo 'Code : ' . $e->getCode(); // Méthode de la classe exception
-            }
-        }
-    }
-
-    /**
-     *  Se déconnecte de la base en cours
-     */
-    public static function seDeconnecter() {
-        self::$pdoCnxBase = null;
-        //si on appelle pas la méthode, la déconnexion a lieu en fin de script
-    }
-
+class GestionNews extends GestionBDD {
+        
     /**
      * Retourne la liste des catégorie
      * @return type Tableau d'objets
      */
     public static function getLesNews() {
-        self::seConnecter();
-        self::$request = "SELECT * FROM news";
-        self::$pdoStResults = self::$pdoCnxBase->prepare(self::$request);
-        self::$pdoStResults->execute();
-        self::$result = self::$pdoStResults->fetchAll();
+        
+        return self::getLesTuples('news');
+    }           
 
-        self::$pdoStResults->closeCursor();
 
-        return self::$result;
-    }
-
-    /**
-     * Retourne la liste des produits
-     * @return type Tableau d'objets
-     */
-    public static function getLesProduits() {
-        self::seConnecter();
-        self::$request = "SELECT * FROM Produit";
-        self::$pdoStResults = self::$pdoCnxBase->prepare(self::$request);
-        self::$pdoStResults->execute();
-        self::$result = self::$pdoStResults->fetchAll();
-
-        self::$pdoStResults->closeCursor();
-
-        return self::$result;
-    }
-
-    /**
-     * Retourne la liste des produits dans une catégorie
-     * @param type Libelle de la catégorie
-     * @return type Tableau de produit 
-     */
-    public static function getLesProduitsByCategorie($libelleCateg) {
-        self::seConnecter();
-        self::$request = "SELECT * FROM Produit P, Categorie C WHERE C.id = P.idCategorie and C.libelle = :libCateg";
-
-        self::$pdoStResults = self::$pdoCnxBase->prepare(self::$request);
-        self::$pdoStResults->bindValue('libCateg', $libelleCateg);
-        self::$pdoStResults->execute();
-        self::$result = self::$pdoStResults->fetchAll();
-
-        self::$pdoStResults->closeCursor();
-
-        return self::$result;
-    }
 
     /**
      * Retourne un objet produit grâce à son ID

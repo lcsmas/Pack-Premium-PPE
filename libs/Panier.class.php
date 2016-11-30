@@ -29,7 +29,10 @@ class Panier {
     }
 
 	public static function getProduits() {
-        return array_column($_SESSION['produits'], 0);
+            if(isset($_SESSION['produits'])){
+                return array_column($_SESSION['produits'], 0);
+            }
+            return null;
     }
 	
     public static function getNbProduits() {

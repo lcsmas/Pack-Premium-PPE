@@ -11,28 +11,33 @@
  *
  * @author masl
  */
+require_once chemins::LIBS . 'Panier.class.php';
+require_once chemins::MODELES . 'gestion_produit.class.php';
+
 class ControleurPanier {
-    public function ajouter() {
-        require_once chemins::LIBS . 'Panier.class.php';
-        require_once chemins::MODELES . 'gestion_produit.class.php';
-        
+    public function ajouter() {       
         $idProduit = filter_input(INPUT_GET, 'idProduit');
         $leProduit = GestionProduit::getLeProduit($idProduit);
         Panier::initialiser();
         Panier::ajouterProduit($leProduit);
         
-        VariablesGlobales::$lesProduits = Panier::getProduits();
-        require_once chemins::VUES . 'v_panier.inc.php';
+        self::afficher(); 
+
     }
     
     public function afficher()
-    {
-        require_once chemins::LIBS . 'Panier.class.php';       
+    {     
         VariablesGlobales::$lesProduits = Panier::getProduits();
         require_once chemins::VUES . 'v_panier.inc.php';
     }
     
     public function vider()
+    {
+        Panier::vider();
+        self::afficher();
+    }
+    
+    public function getListeProduitPanier()
     {
         
     }

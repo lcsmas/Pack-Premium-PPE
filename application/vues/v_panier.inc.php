@@ -1,7 +1,15 @@
+<?php require_once chemins::LIBS . 'Panier.class.php'; ?>
+
 <script>
     $(function(){ 
         $(".viderPanier").click(function(){
-             $("article").html("");
+             $.ajax({
+                 url : 'index.php?controleur=panier&action=vider',
+                 success : function(data){
+                     $("html").html(data);
+                     console.log(data);
+                 }
+             });
         });
     });
 </script>
@@ -9,7 +17,7 @@
 <section class="panier">
     
     <img src="<?php echo Chemins::IMAGES . 'mon_panier.png' ?>"	alt="Panier" title="panier"/>
-    <button class="viderPanier" onclick="<?php Panier::vider();?>">Vider le panier</button> <!--href="index.php?controleur=panier&action=vider!--> 
+    <button class="viderPanier" onclick="">Vider le panier</button> <!--href="index.php?controleur=panier&action=vider!--> 
     <?php
     foreach (VariablesGlobales::$lesProduits as $unProduit) {
         $id = $unProduit->idProduit;

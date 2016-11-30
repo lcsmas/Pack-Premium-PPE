@@ -25,14 +25,14 @@
             <header>
                 <div id="titre_principal">
                     <img src="<?php echo chemins::IMAGES . 'M.png'; ?>" alt="Logo de Zozor" id="logo" />
-                    <h1>Boutique en ligne Lucas Mas</h1>
+                    <h1>Le site personnel de Lucas Mas</h1>
 
                 </div>               
                 <nav>
                     <ul>
                         <li><a class="btn btn-default" href="index.php?controleur=accueil&action=afficherLesNews">Accueil</a></li>
                         <li><a class="btn btn-default" href="index.php?controleur=boutique&action=afficher">Boutique</a></li>
-<!--                        <li><a class="btn btn-default" href="index.php?cas=lettre_motiv">Lettre de motivation</a></li>
+<!--                    <li><a class="btn btn-default" href="index.php?cas=lettre_motiv">Lettre de motivation</a></li>
                         <li><a class="btn btn-default" href="index.php?cas=cv">CV</a></li>
                         <li><a class="btn btn-default" href="index.php?cas=contact">Contact</a></li>
                         <li><a class="btn btn-default" href="index.php?cas=projet">Projet</a></li>-->
@@ -40,12 +40,12 @@
                 </nav>
             </header>
 
-<!--            <div id="banniere_image">
+            <div id="banniere_image">
                 <div id="banniere_description">
                     Mon site préféré
                     <a href="https://openclassrooms.com/" class="bouton_rouge" target="blank">Accéder au site <img src="<?php echo chemins::IMAGES . 'flecheblanchedroite.png'; ?>" alt=""/></a>
                 </div>
-            </div>-->
+            </div>
 
 
 

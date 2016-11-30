@@ -1,7 +1,7 @@
 <footer>
     <div class="container" style="padding-bottom: 20px;">  
         <div class="row">
-<!--            <div class="col-lg-3">     
+            <div class="col-lg-3">     
                 <a class="text-muted" href="http://ent.btssio.net/sio1" >Mes amis</a>
             </div>
             <div class="col-lg-3">  
@@ -9,7 +9,7 @@
             </div>
             <div class="col-lg-3">  
                <a class="text-muted" href="<?php echo chemins::FICHIERS_TELECHARGEABLES . 'CV.pdf'; ?>" download="CV">Mon CV</a>
-            </div>           -->
+            </div>           
             <div class="col-lg-3">  
                 <a class="text-muted" href="index.php?cas=afficherIndexAdmin"> Administration</a>
             </div>   
